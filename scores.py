@@ -2,6 +2,21 @@ from bs4 import BeautifulSoup
 
 SCORES_URL = "https://hemis.edu.af/student/scores-list"
 
+# Helper functions for safe conversion
+def safe_float(s, default=0.0):
+    try:
+        s = s.strip().replace(",", ".")  # handle comma decimal
+        return float(s) if s else default
+    except (ValueError, AttributeError):
+        return default
+
+def safe_int(s, default=0):
+    try:
+        s = s.strip()
+        return int(s) if s else default
+    except (ValueError, AttributeError):
+        return default
+
 def get_scores_page(session):
     resp = session.get(SCORES_URL, timeout=30)
 
@@ -37,17 +52,17 @@ def get_scores_page(session):
 
             subject = {
                 "subject": cols[1],
-                "credit": float(cols[2]),
+                "credit": safe_float(cols[2]),
                 "attendance": {
-                    "present": int(cols[3]),
-                    "absent": int(cols[4])
+                    "present": safe_int(cols[3]),
+                    "absent": safe_int(cols[4])
                 },
                 "scores": {
-                    "homework": float(cols[5]),
-                    "activity": float(cols[6]),
-                    "midterm": float(cols[7]),
-                    "final": float(cols[8]),
-                    "total": float(cols[9])
+                    "homework": safe_float(cols[5]),
+                    "activity": safe_float(cols[6]),
+                    "midterm": safe_float(cols[7]),
+                    "final": safe_float(cols[8]),
+                    "total": safe_float(cols[9])
                 },
                 "status": cols[13],
                 "final_approval": cols[14] if len(cols) > 14 else None

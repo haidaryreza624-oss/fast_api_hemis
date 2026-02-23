@@ -1,0 +1,650 @@
+# API Documentation (Simplified)
+
+1. POST /login
+
+---
+
+**Purpose:** Log in with email and password.
+
+**Request Body (JSON):**
+{
+"email": "string",          // required
+"password": "string",       // required
+"remember_me": true/false    // optional
+}
+
+**Failure Response (JSON):**
+{
+"profile": null,
+"error": "<error message>",
+"session": null
+}
+**Success Response (JSON):**
+{
+    "profile": {
+        "profile_image": "https://hemis.edu.af/storage/pictures/R01010429.jpg",
+        "name": "رضا",
+        "student_id": "R01010429",
+        "department": "سیستم های معلوماتی",
+        "university": "کابل",
+        "نتیجه کانکور": "دیپارتمنت سیستم های معلوماتی پوهنځی کمپیوتر ساینس پوهنتون کابل",
+        "درجه": "لیسانس",
+        "پوهنتون": "کابل",
+        "دیپارتمنت": "سیستم های معلوماتی",
+        "نام": "رضا",
+        "نام پدر": "عبدالخالق",
+        "نام پدرکلان": "غلام حیدر",
+        "نام فامیلی": "حسینی",
+        "ملیت": "هزاره",
+        "زبان مادری": "دری",
+        "جنسیت": "مرد",
+        "نمبر عمومی تذکره": "1400-0206-23372",
+        "صفحه": "الکترونیکی",
+        "جلد": "الکترونیکی",
+        "شماره ثبت": "الکترونیکی",
+        "سال تولد": "1384",
+        "حالت مدنی": "مجرد",
+        "نام مکتب": "عبدالرحيم شهيد",
+        "سال فراغت": "1402",
+        "سال کانکور": "1403",
+        "نمره کانکور": "311.951",
+        "ID کانکور": "R01010429",
+        "شماره تماس": "0780386184",
+        "ادرس": "ولایت",
+        "اصلی": "وردک",
+        "فعلی": "کابل",
+        "نام دیپاتمنت به انگلیسی": "Information Systems",
+        "سمستر": "3",
+        "وضعیت": "شامل پوهنتون"
+    },
+    "error": null
+}
+
+2. GET /check
+
+---
+
+**Purpose:** Check if a valid session exists.
+
+**Request:** GET, no body
+
+**Failure Response (JSON):**
+{
+"profile": null,
+"error": "❌ No valid session found"
+}
+**Success Response (JSON):**
+{
+    "profile": {
+        "profile_image": "https://hemis.edu.af/storage/pictures/R01010429.jpg",
+        "name": "رضا",
+        "student_id": "R01010429",
+        "department": "سیستم های معلوماتی",
+        "university": "کابل",
+        "نتیجه کانکور": "دیپارتمنت سیستم های معلوماتی پوهنځی کمپیوتر ساینس پوهنتون کابل",
+        "درجه": "لیسانس",
+        "پوهنتون": "کابل",
+        "دیپارتمنت": "سیستم های معلوماتی",
+        "نام": "رضا",
+        "نام پدر": "عبدالخالق",
+        "نام پدرکلان": "غلام حیدر",
+        "نام فامیلی": "حسینی",
+        "ملیت": "هزاره",
+        "زبان مادری": "دری",
+        "جنسیت": "مرد",
+        "نمبر عمومی تذکره": "1400-0206-23372",
+        "صفحه": "الکترونیکی",
+        "جلد": "الکترونیکی",
+        "شماره ثبت": "الکترونیکی",
+        "سال تولد": "1384",
+        "حالت مدنی": "مجرد",
+        "نام مکتب": "عبدالرحيم شهيد",
+        "سال فراغت": "1402",
+        "سال کانکور": "1403",
+        "نمره کانکور": "311.951",
+        "ID کانکور": "R01010429",
+        "شماره تماس": "0780386184",
+        "ادرس": "ولایت",
+        "اصلی": "وردک",
+        "فعلی": "کابل",
+        "نام دیپاتمنت به انگلیسی": "Information Systems",
+        "سمستر": "3",
+        "وضعیت": "شامل پوهنتون"
+    },
+    "error": null
+}
+
+
+3. POST /logout
+
+---
+
+**Purpose:** Logs out the user.
+
+**Request:** POST, no body
+
+**Failure Response (JSON):**
+{
+"success": false,
+"message": "❌ Logout failed: <error message>"
+}
+**Sucess response Response (JSON):**
+{
+    "success": true,
+    "message": null
+}
+
+4. GET /final-scores
+
+---
+
+**Purpose:** Retrieve final scores using active session.
+
+**Request:** GET, no body
+
+**Failure Response (JSON):**
+{
+"success": false,
+"message": "❌ Cannot get final scores: <error message>"
+}
+
+**Success Respoe (JSON):**
+{
+    "success": true,
+    "final_scores": {
+        "semester_1": {
+            "courses": [
+                {
+                    "index": 1,
+                    "subject": "ریاضیات l",
+                    "academic_year": "1403",
+                    "chance_1": "73.00",
+                    "chance_2": null,
+                    "chance_3": null,
+                    "chance_4": null,
+                    "credit": 4.0,
+                    "passing_score": 73.0,
+                    "passing_chance": 1,
+                    "weighted_score": 292.0
+                },
+                {
+                    "index": 2,
+                    "subject": "تاریخ معاصر افغانستان",
+                    "academic_year": "1403",
+                    "chance_1": "87.00",
+                    "chance_2": null,
+                    "chance_3": null,
+                    "chance_4": null,
+                    "credit": 2.0,
+                    "passing_score": 87.0,
+                    "passing_chance": 1,
+                    "weighted_score": 174.0
+                },
+                {
+                    "index": 3,
+                    "subject": "انگلیسی l",
+                    "academic_year": "1403",
+                    "chance_1": "94.00",
+                    "chance_2": null,
+                    "chance_3": null,
+                    "chance_4": null,
+                    "credit": 2.0,
+                    "passing_score": 94.0,
+                    "passing_chance": 1,
+                    "weighted_score": 188.0
+                },
+                {
+                    "index": 4,
+                    "subject": "تلاوت وتجوید",
+                    "academic_year": "1403",
+                    "chance_1": "100.00",
+                    "chance_2": null,
+                    "chance_3": null,
+                    "chance_4": null,
+                    "credit": 1.0,
+                    "passing_score": 100.0,
+                    "passing_chance": 1,
+                    "weighted_score": 100.0
+                },
+                {
+                    "index": 5,
+                    "subject": "مقدمه برنامه نویسی",
+                    "academic_year": "1403",
+                    "chance_1": "97.00",
+                    "chance_2": null,
+                    "chance_3": null,
+                    "chance_4": null,
+                    "credit": 4.0,
+                    "passing_score": 97.0,
+                    "passing_chance": 1,
+                    "weighted_score": 388.0
+                },
+                {
+                    "index": 6,
+                    "subject": "نظام اعتقادی اسلام",
+                    "academic_year": "1403",
+                    "chance_1": "100.00",
+                    "chance_2": null,
+                    "chance_3": null,
+                    "chance_4": null,
+                    "credit": 2.0,
+                    "passing_score": 100.0,
+                    "passing_chance": 1,
+                    "weighted_score": 200.0
+                },
+                {
+                    "index": 7,
+                    "subject": "اساسات کمپیوتر 1",
+                    "academic_year": "1403",
+                    "chance_1": "94.00",
+                    "chance_2": null,
+                    "chance_3": null,
+                    "chance_4": null,
+                    "credit": 4.0,
+                    "passing_score": 94.0,
+                    "passing_chance": 1,
+                    "weighted_score": 376.0
+                }
+            ],
+            "summary": {
+                "academic_year": "1403",
+                "semester": "1",
+                "average": 90.42,
+                "grade": "A",
+                "passed": "بلی",
+                "promoted": "بلی",
+                "total_credits": 19.0,
+                "passed_credits": 19.0
+            }
+        },
+        "semester_2": {
+        
+            ,
+            "summary": null
+        }
+    }
+}
+
+5. GET /scores
+
+---
+
+**Purpose:** Retrieve detailed scores using active session.
+
+**Request:** GET, no body
+
+**Failure Response (JSON):**
+{
+"success": false,
+"message": "❌ No active session. Please login first."
+}
+**Success Respoe (JSON):**
+{
+    "success": true,
+    "scores": {
+        "semester_1": [
+            {
+                "subject": "نظام اعتقادی اسلام",
+                "credit": 2.0,
+                "attendance": {
+                    "present": 24,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 20.0,
+                    "final": 60.0,
+                    "total": 100.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس چهارم"
+            },
+            {
+                "subject": "اساسات کمپیوتر 1",
+                "credit": 4.0,
+                "attendance": {
+                    "present": 48,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 20.0,
+                    "final": 54.0,
+                    "total": 94.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "مقدمه برنامه نویسی",
+                "credit": 4.0,
+                "attendance": {
+                    "present": 48,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 18.0,
+                    "final": 59.0,
+                    "total": 97.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس چهارم"
+            },
+            {
+                "subject": "انگلیسی l",
+                "credit": 2.0,
+                "attendance": {
+                    "present": 30,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 9.0,
+                    "activity": 9.0,
+                    "midterm": 18.0,
+                    "final": 58.0,
+                    "total": 94.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس چهارم"
+            },
+            {
+                "subject": "تاریخ معاصر افغانستان",
+                "credit": 2.0,
+                "attendance": {
+                    "present": 30,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 12.0,
+                    "final": 55.0,
+                    "total": 87.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس چهارم"
+            },
+            {
+                "subject": "ریاضیات l",
+                "credit": 4.0,
+                "attendance": {
+                    "present": 60,
+                    "absent": 2
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 15.0,
+                    "final": 38.0,
+                    "total": 73.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس چهارم"
+            },
+            {
+                "subject": "تلاوت وتجوید",
+                "credit": 1.0,
+                "attendance": {
+                    "present": 24,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 20.0,
+                    "final": 60.0,
+                    "total": 100.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            }
+        ],
+        "semester_2": [
+            {
+                "subject": "مقدمه برنامه نویسی",
+                "credit": 4.0,
+                "attendance": {
+                    "present": 64,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 9.0,
+                    "activity": 10.0,
+                    "midterm": 18.0,
+                    "final": 60.0,
+                    "total": 97.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "سیرت نبوی",
+                "credit": 2.0,
+                "attendance": {
+                    "present": 32,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 20.0,
+                    "final": 60.0,
+                    "total": 100.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "نظام عبادتی اسلام",
+                "credit": 2.0,
+                "attendance": {
+                    "present": 32,
+                    "absent": 2
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 19.0,
+                    "final": 56.0,
+                    "total": 95.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "الجبر خطی",
+                "credit": 3.0,
+                "attendance": {
+                    "present": 48,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 20.0,
+                    "final": 60.0,
+                    "total": 100.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "اساسات کمپیوتر II",
+                "credit": 4.0,
+                "attendance": {
+                    "present": 64,
+                    "absent": 8
+                },
+                "scores": {
+                    "homework": 5.0,
+                    "activity": 10.0,
+                    "midterm": 15.0,
+                    "final": 60.0,
+                    "total": 90.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "ریاضیات مجزا",
+                "credit": 3.0,
+                "attendance": {
+                    "present": 36,
+                    "absent": 5
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 18.0,
+                    "final": 51.0,
+                    "total": 89.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "انگلیسی ll",
+                "credit": 2.0,
+                "attendance": {
+                    "present": 24,
+                    "absent": 3
+                },
+                "scores": {
+                    "homework": 9.0,
+                    "activity": 10.0,
+                    "midterm": 20.0,
+                    "final": 60.0,
+                    "total": 99.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            }
+        ],
+        "semester_3": [
+            {
+                "subject": "شبکه های کمپیوتر",
+                "credit": 4.0,
+                "attendance": {
+                    "present": 64,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 20.0,
+                    "final": 60.0,
+                    "total": 100.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "احتمالات",
+                "credit": 3.0,
+                "attendance": {
+                    "present": 48,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 18.0,
+                    "final": 57.0,
+                    "total": 95.0
+                },
+                "status": "کامیاب",
+                "final_approval": ""
+            },
+            {
+                "subject": "نظام اخلاقی اسلام",
+                "credit": 2.0,
+                "attendance": {
+                    "present": 32,
+                    "absent": 2
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 9.0,
+                    "midterm": 20.0,
+                    "final": 49.0,
+                    "total": 88.0
+                },
+                "status": "کامیاب",
+                "final_approval": ""
+            },
+            {
+                "subject": "مفاهیم دیتابیس",
+                "credit": 4.0,
+                "attendance": {
+                    "present": 64,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 9.0,
+                    "activity": 10.0,
+                    "midterm": 18.0,
+                    "final": 54.0,
+                    "total": 91.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "نظام اجتماعی اسلام",
+                "credit": 2.0,
+                "attendance": {
+                    "present": 32,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 19.0,
+                    "final": 50.0,
+                    "total": 89.0
+                },
+                "status": "کامیاب",
+                "final_approval": ""
+            },
+            {
+                "subject": "انگلیسی lll",
+                "credit": 2.0,
+                "attendance": {
+                    "present": 32,
+                    "absent": 2
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 9.0,
+                    "midterm": 20.0,
+                    "final": 58.0,
+                    "total": 97.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            },
+            {
+                "subject": "برنامه نویسی پیشرفته",
+                "credit": 4.0,
+                "attendance": {
+                    "present": 64,
+                    "absent": 0
+                },
+                "scores": {
+                    "homework": 10.0,
+                    "activity": 10.0,
+                    "midterm": 20.0,
+                    "final": 58.0,
+                    "total": 98.0
+                },
+                "status": "کامیاب",
+                "final_approval": "تایید نهایی چانس اول"
+            }
+        ]
+    }
+}
+
